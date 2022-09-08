@@ -1,8 +1,12 @@
 package com.openclassroom.microservice.notes.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
@@ -30,6 +34,24 @@ public class NoteServiceTest
 	
 	NoteDTO noteDtoTest = new NoteDTO(
 			"id patientNote", "My new patientNote", 1);
+	
+	
+	@Test
+	public void readAllNotesMethodTest()
+	{
+		List<Note> list = new ArrayList<>();
+		Note note = new Note (1, "My new patientNote");
+		note.setId("id");
+		list.add(note);
+	
+		when(noteRepo.findByPatientId(1)).thenReturn(list);
+		
+		List<NoteDTO> noteDTOList = noteImpl.readAllNotes(1);
+		
+		assertEquals(noteDTOList.get(0).getPatientNote(), note.getPatientNote());
+		
+		
+	}
 	
 	@Test
 	public void createPatientMethodTest()
@@ -71,7 +93,12 @@ public class NoteServiceTest
 	@Test
 	public void deletePatientMethodTest()
 	{
+		Note note = new Note (1, "My new patientNote");
 		
+		note.setId("id");
+		noteImpl.delete("id");
+		noteRepo.delete(note);
+		verify(noteRepo).delete(note);
 	}
 	
 	
