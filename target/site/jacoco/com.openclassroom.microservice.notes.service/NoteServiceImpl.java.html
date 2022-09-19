@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>NoteServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">PROJET_9_Mediscreen-notes</a> &gt; <a href="index.source.html" class="el_package">com.openclassroom.microservice.notes.service</a> &gt; <span class="el_source">NoteServiceImpl.java</span></div><h1>NoteServiceImpl.java</h1><pre class="source lang-java linenums">package com.openclassroom.microservice.notes.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.openclassroom.microservice.notes.model.Note;
+import com.openclassroom.microservice.notes.repository.NoteDTO;
+import com.openclassroom.microservice.notes.repository.NoteRepository;
+
+@Service
+<span class="fc" id="L15">public class NoteServiceImpl implements NoteService</span>
+{
+	
+	@Autowired
+	private NoteRepository noteRepo;
+
+	@Override
+	public List&lt;NoteDTO&gt; readAllNotes(Integer id)
+	{
+<span class="fc" id="L24">		List&lt;Note&gt; list = noteRepo.findByPatientId(id);</span>
+<span class="fc" id="L25">		List&lt;NoteDTO&gt; listDTO = new ArrayList&lt;&gt;();</span>
+<span class="fc bfc" id="L26" title="All 2 branches covered.">		for (Note note : list)</span>
+		{
+<span class="fc" id="L28">			listDTO.add( new NoteDTO(note.getId(), note.getPatientNote(), note.getPatientId()));</span>
+<span class="fc" id="L29">		}</span>
+<span class="fc" id="L30">		return listDTO;</span>
+	}
+	
+
+	@Override
+	public Note create(Integer id, NoteDTO noteDTO)
+	{
+<span class="fc" id="L37">		Note newNote = new Note (noteDTO.getPatientNote());</span>
+<span class="fc" id="L38">		newNote.setPatientId(id);</span>
+<span class="fc" id="L39">		noteRepo.save(newNote);</span>
+<span class="fc" id="L40">		return newNote;</span>
+	}
+	
+	
+	
+	@Override
+	public Optional&lt;NoteDTO&gt; read(String id)
+	{
+<span class="fc" id="L48">		Note note = noteRepo.findById(id).get();</span>
+<span class="fc" id="L49">		NoteDTO noteDTO = new NoteDTO(note.getId(), note.getPatientNote(), note.getPatientId());</span>
+<span class="fc" id="L50">		return Optional.of(noteDTO);</span>
+	}
+
+	
+	
+	@Override
+	public Note update(String id, NoteDTO noteDTO)
+	{
+<span class="fc" id="L58">		Note note = noteRepo.findById(id).get();</span>
+<span class="fc" id="L59">		note.setPatientNote(noteDTO.getPatientNote());</span>
+<span class="fc" id="L60">		noteRepo.save(note);	</span>
+<span class="fc" id="L61">		return note;</span>
+	}
+
+	
+	
+	@Override
+	public void delete(String id)
+	{
+<span class="fc" id="L69">		noteRepo.deleteById(id);</span>
+		
+<span class="fc" id="L71">	}</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

@@ -1,0 +1,7 @@
+com\openclassroom\microservice\notes\repository\NoteRepository.class
+com\openclassroom\microservice\notes\controller\NoteController.class
+com\openclassroom\microservice\notes\Projet9MediscreenNotesApplication.class
+com\openclassroom\microservice\notes\service\NoteService.class
+com\openclassroom\microservice\notes\model\Note.class
+com\openclassroom\microservice\notes\repository\NoteDTO.class
+com\openclassroom\microservice\notes\service\NoteServiceImpl.class

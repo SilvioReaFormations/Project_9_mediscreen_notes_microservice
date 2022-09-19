@@ -1,0 +1,6 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+PROJET_9_Mediscreen-notes,com.openclassroom.microservice.notes.controller,NoteController,27,3,0,0,6,1,5,1,5,1
+PROJET_9_Mediscreen-notes,com.openclassroom.microservice.notes.service,NoteServiceImpl,0,96,0,2,0,20,0,7,0,6
+PROJET_9_Mediscreen-notes,com.openclassroom.microservice.notes.model,Note,0,39,0,0,0,18,0,9,0,9
+PROJET_9_Mediscreen-notes,com.openclassroom.microservice.notes,Projet9MediscreenNotesApplication,5,3,0,0,2,1,1,1,1,1
+PROJET_9_Mediscreen-notes,com.openclassroom.microservice.notes.repository,NoteDTO,21,15,0,0,10,6,6,2,6,2
